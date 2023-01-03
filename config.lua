@@ -26,7 +26,7 @@ Config = {
             }
         }
     },
-    WhitelistedVehicles = {"police"},
+    WhitelistedVehicles = {"POLICE", "SULTANRS"},
     Events = { -- maybe dont touch these
         CLEARZONE = GetCurrentResourceName() .. ":client_clear"
     },
