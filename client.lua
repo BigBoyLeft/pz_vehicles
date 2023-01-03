@@ -43,12 +43,22 @@ function getVehiclesInZone(_zone)
 
     for veh in EnumerateEntities(FindFirstVehicle, FindNextVehicle, EndFindVehicle) do
         local coords = GetEntityCoords(veh)
-        if (zone:isPointInside(coords) and not IsPedAPlayer(GetPedInVehicleSeat(veh, -1))) then
+        if (zone:isPointInside(coords) and not IsPedAPlayer(GetPedInVehicleSeat(veh, -1)) and not inList(GetHashKey(veh))) then
             table.insert(vehicles, veh)
         end
     end
 
     return vehicles
+end
+
+function inList(vehicle_name)
+    for _, v in pairs(Config.WhitelistedVehicles) do
+        if (v == vehicle_name) then
+            return true
+        end
+    end
+
+    return false
 end
 
 function countdown(seconds, zone, func)
